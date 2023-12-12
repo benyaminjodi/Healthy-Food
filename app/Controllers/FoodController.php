@@ -10,7 +10,7 @@ class FoodController extends BaseController
     {
         $model = model(Food::class);
         $data['food'] = $model->getDataFood();
-        return view('food', $data);
+        return view('food_by_calories_view', $data);
     }
 
     public function foodsByCalories($calories)
