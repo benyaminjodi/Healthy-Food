@@ -53,17 +53,16 @@
 
         <div class="container d-flex align-items-center">
 
-            <h2 class="logo me-auto"><a href="index.html">Healthy Food</a></h2>
+            <h2 class="logo me-auto"><a href="<?= base_url('/') ?>">Healthy Food</a></h2>
             <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            <!-- <a href="<?= base_url('/') ?>" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="active" href="index.html">Home</a></li>
-                    <li><a href="trainers.html">Food</a></li>
-                    <li><a href="events.html">Order</a></li>
+                    <li><a class="active" href="<?= base_url('/') ?>">Home</a></li>
+                    <li><a href="<?= base_url('/food') ?>">Food</a></li>
+                    <li><a href="<?= base_url('/orderform') ?>">Order</a></li>
                     <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="contact.html">Order History</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->

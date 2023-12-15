@@ -8,6 +8,10 @@ class FoodController extends BaseController
 {
     public function index()
     {
+        if (session()->get('num_user') == '') {
+            return redirect()->to('/login');
+        }
+
         $model = model(Food::class);
         $data['food'] = $model->getDataFood();
         return view('food_by_calories_view', $data);
@@ -15,6 +19,10 @@ class FoodController extends BaseController
 
     public function foodsByCalories($calories)
     {
+        if (session()->get('num_user') == '') {
+            return redirect()->to('/login');
+        }
+
         $model = new Food();
         $data['food'] = $model->getFoodByCalories($calories);
         return view('food_by_calories_view', $data);

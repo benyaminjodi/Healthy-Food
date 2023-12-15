@@ -44,9 +44,6 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             height: 100vh;
         }
 
@@ -54,8 +51,8 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            max-width: 800px;
-            margin: 20px;
+            width: 100vw;
+
         }
 
         .food-item {
@@ -86,96 +83,103 @@
             padding: 10px;
             text-align: center;
         }
+
+        .form {
+            margin-top: 5rem;
+            margin-left: 4rem;
+        }
     </style>
 </head>
 
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top">
+
+    <div class="container d-flex align-items-center">
+        <h2 class="logo me-auto"><a href="<?= base_url('/') ?>">Healthy Food</a></h2>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+                <li><a href="<?= base_url('/') ?>">Home</a></li>
+                <li><a class="active" href="<?= base_url('/food') ?>">Food</a></li>
+                <li><a href="events.html">Order</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="contact.html">Order History</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+
+        <a href="courses.html" class="get-started-btn">Get Started</a>
+
+    </div>
+</header><!-- End Header -->
+
+
 <body>
-    <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top">
-        <!-- <style>
-            .logo-container {
-                margin-bottom: -50px;
-                margin-right: 50px;
-            }
-        </style>
-
-        <div class="logo-container">
-            <img src="<?= base_url('logo/logo_hf.jpg') ?>" width="50px">
-        </div> -->
-
-        <div class="container d-flex align-items-center">
-
-            <h2 class="logo me-auto"><a href="index.html">Healthy Food</a></h2>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-            <nav id="navbar" class="navbar order-last order-lg-0">
-                <ul>
-                    <li><a class="active" href="index.html">Home</a></li>
-                    <li><a href="trainers.html">Food</a></li>
-                    <li><a href="events.html">Order</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="contact.html">Order History</a></li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-
-            <a href="courses.html" class="get-started-btn">Get Started</a>
-
-        </div>
-    </header><!-- End Header -->
-
+    <form id="foodForm" class="form">
+        <input type="text" id="foodInput" />
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
 
     <div class="food-container" id="foodList">
-        <!-- Food items will be dynamically added here -->
+        <script>
+            // Get the food data from PHP
+            const foodData = <?php echo json_encode($food); ?>;
+
+            // Function to create a food item element
+            function createFoodItem(food) {
+                const foodItem = document.createElement('div');
+                foodItem.className = 'food-item';
+
+                const foodInfo = document.createElement('div');
+                foodInfo.className = 'food-info';
+                foodInfo.innerHTML = `
+                <h3>${food.food}</h3>
+                <p>Serving: ${food.serving}</p>
+                <p>Price: Rp${food.price}</p>
+            `;
+
+                const calories = document.createElement('div');
+                calories.className = 'calories';
+                calories.textContent = `Calories: ${food.calories}`;
+                foodItem.appendChild(foodInfo);
+                foodItem.appendChild(calories);
+
+                return foodItem;
+            }
+
+            // Get the food container
+            const foodContainer = document.getElementById('foodList');
+
+            // Function to handle form submission
+            function submitForm() {
+                const foodInput = document.getElementById('foodInput').value;
+
+                // Encode input for URL
+                const encodedInput = encodeURIComponent(foodInput);
+
+                // Redirect to the desired URL using base_url
+                window.location.href = '<?= base_url('/food') ?>/' + encodedInput;
+            }
+
+            // Loop through the food data and append each item to the container
+            foodData.forEach(food => {
+                // Log each food item to the console
+                console.log(food);
+
+                const foodItem = createFoodItem(food);
+                foodContainer.appendChild(foodItem);
+            });
+        </script>
     </div>
+
+
 
     <!-- ... Previous HTML code ... -->
 
-    <script>
-        // Get the food data from PHP (Laravel Blade syntax)
-        const foodData = <?php echo json_encode($food); ?>;
-
-        // Function to create a food item element
-        function createFoodItem(food) {
-            const foodItem = document.createElement('div');
-            foodItem.className = 'food-item';
-
-            const foodInfo = document.createElement('div');
-            foodInfo.className = 'food-info';
-            foodInfo.innerHTML = `
-            <h3>${food.Food}</h3>
-            <p>Serving: ${food.Serving}</p>
-        `;
-
-            const calories = document.createElement('div');
-            calories.className = 'calories';
-            calories.textContent = `Calories: ${food.Calories}`;
-
-            foodItem.appendChild(foodInfo);
-            foodItem.appendChild(calories);
-
-            return foodItem;
-        }
-
-        // Get the food container
-        const foodContainer = document.getElementById('foodList');
-
-        // Log the entire foodData array to the console
-        console.log(foodData);
-
-        // Loop through the food data and append each item to the container
-        foodData.forEach(food => {
-            // Log each food item to the console
-            console.log(food);
-
-            const foodItem = createFoodItem(food);
-            foodContainer.appendChild(foodItem);
-        });
-    </script>
-
     <!-- ... Remaining HTML code ... -->
-
 </body>
+
 
 </html>

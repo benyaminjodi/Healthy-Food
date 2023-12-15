@@ -13,6 +13,11 @@ class Food extends Model
         return $this->findAll();
     }
 
+    public function getFoodName()
+    {
+        return $this->db->table('healthy_food')->select('food')->get()->getResultArray();
+    }
+
     public function getFoodByCalories($calories)
     {
         return $this->where('Calories', $calories)->findAll();
