@@ -32,9 +32,19 @@ class Order extends Model
     public function getOrder()
     {
         $email = $_COOKIE['TestCookie'];
-        $order = $this->db->table('orders')->select('id_order, total_harga, point, created_at')->where('email_user', $email)->get()->getResultArray();
+
+        // Order by created_at in descending order and limit the result to one row
+        $order = $this->db->table('orders')
+            ->select('id_order, email_user, total_harga, point, created_at')
+            ->where('email_user', $email)
+            ->orderBy('created_at', 'DESC')
+            ->limit(1)
+            ->get()
+            ->getRowArray();
+
         return $order;
     }
+
 
     public function updateDataOrder($id_order, $total_harga, $point)
     {

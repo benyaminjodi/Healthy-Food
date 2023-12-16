@@ -36,4 +36,10 @@ class User extends Model
         $poin = $this->db->table('users')->select('poin')->where('email', $email)->get()->getRowArray();
         return $poin['poin'];
     }
+
+    public function getUser($email)
+    {
+        $user = $this->db->table('users')->select('name, email, poin')->where('email', $email)->get()->getRowArray();
+        return $user;
+    }
 }

@@ -10,7 +10,11 @@ class UserController extends BaseController
 {
     public function index()
     {
-        return view('v_user');
+        $model = new User();
+        $email = $_COOKIE['TestCookie'];
+        $data['user'] = $model->getUser($email);
+
+        return view('v_user', $data);
     }
 
     public function sign_up()
