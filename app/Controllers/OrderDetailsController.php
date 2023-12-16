@@ -27,6 +27,11 @@ class OrderDetailsController extends BaseController
         $total_harga = $model2->getTotalHarga($model2->getLastIdOrder());
         $point = $model2->hitungPoin($total_harga, $model2->getCreatedAt($model2->getLastIdOrder()));
         $model2->updateDataOrder($model2->getLastIdOrder(), $total_harga, $point);
+
+        return redirect()->to('/order_view');
     }
+
+    
 }
+
 

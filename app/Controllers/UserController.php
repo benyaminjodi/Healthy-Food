@@ -8,6 +8,10 @@ use DateTime;
 
 class UserController extends BaseController
 {
+    public function index()
+    {
+        return view('v_user');
+    }
 
     public function sign_up()
     {

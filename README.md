@@ -1,67 +1,27 @@
-# CodeIgniter 4 Application Starter
+# Healthy Food
 
-## What is CodeIgniter?
+Website Healthy Food, dirancang untuk memberikan informasi seputar makanan sehat dan menyediakan fitur order yang dapat digunakan oleh user. Hal ini diharapkan bisa meningkatan kesadaran akan pentingnya pola makan sehat dalam menjaga kesehatan tubuh. Dengan gaya hidup yang serba cepat, banyak orang cenderung mengabaikan aspek nutrisi. Melalui website ini, kita dapat memberikan kesadaran untuk membantu mereka membuat pilihan makanan yang lebih baik.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## How To Run
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- Clone repository github ini ke local
+- Buka XAMPP, Start Apache dan MySQL
+- Buka Localhost/phpmyadmin
+- Buat sebuah database bernama 'healthy_food'
+- Buat 4 buah table, yaitu:
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+  a. healthy_food = ['food', 'serving','calories', price]
+  b. orders = ['id_order','email_user','total_harga','point', 'created_at']
+  c.order_details = ['id','id_order','food_name','qty','harga']
+  d. users =['name', 'email', 'password', 'point']
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+- Jalankan composer install di terminal
+- Jalankan php spark serve
 
-## Installation & updates
+## Endpoint
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+Berikut adalah API Endpoint pada Healthy Food :
+Method GET :
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
-
-## Setup
-
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
-
-## Important Change with index.php
-
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
-
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
-
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Server Requirements
-
-PHP version 7.4 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> **Warning**
-> The end of life date for PHP 7.4 was November 28, 2022. If you are
-> still using PHP 7.4, you should upgrade immediately. The end of life date
-> for PHP 8.0 will be November 26, 2023.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+- /foodAPI : Menampilkan data makanan
+- /foodAPI/(:any) : Menampilkan data makanan berdasarkan kalori dengan input type string

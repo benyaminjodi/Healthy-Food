@@ -40,53 +40,100 @@
     <title>Food Data</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
+            color: #333;
+            margin: 20px;
         }
 
-        .food-container {
+        .form {
+            max-width: 300px;
+            margin: 80px auto 20px;
+            /* Sesuaikan margin atas di sini */
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #caloriesTitle {
+            color: #2ecc71;
+            /* Hijau tua */
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+
+        #foodInput {
+            width: 70%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #foodInput:focus {
+            border-color: #2ecc71;
+            /* Hijau tua saat input fokus */
+        }
+
+        button {
+            background-color: #2ecc71;
+            /* Hijau tua */
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+            /* Hijau sedikit lebih gelap saat dihover */
+        }
+
+        #foodList {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            width: 100vw;
-
+            margin-top: 20px;
         }
 
         .food-item {
             background-color: #fff;
-            border-radius: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            width: 300px;
             margin: 10px;
+            padding: 15px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
         }
 
-        .food-info {
-            padding: 15px;
+        .food-item:hover {
+            transform: scale(1.05);
         }
 
         .food-info h3 {
-            margin: 0;
-            color: #333;
+            color: #2ecc71;
+            /* Hijau tua */
+            margin-bottom: 10px;
         }
 
         .food-info p {
-            margin: 5px 0 0;
-            color: #777;
+            margin: 5px 0;
+            color: #555;
         }
 
         .calories {
-            background-color: #f8f8f8;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .form {
-            margin-top: 5rem;
-            margin-left: 4rem;
+            font-weight: bold;
+            color: #e74c3c;
+            /* Merah tua */
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -103,9 +150,7 @@
             <ul>
                 <li><a href="<?= base_url('/') ?>">Home</a></li>
                 <li><a class="active" href="<?= base_url('/food') ?>">Food</a></li>
-                <li><a href="events.html">Order</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="contact.html">Order History</a></li>
+                <li><a href="<?= base_url('/order') ?>">Order</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
@@ -118,6 +163,7 @@
 
 <body>
     <form id="foodForm" class="form">
+        <div id="caloriesTitle">Insert Calories</div>
         <input type="text" id="foodInput" />
         <button type="button" onclick="submitForm()">Submit</button>
     </form>

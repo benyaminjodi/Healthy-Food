@@ -32,6 +32,12 @@ class OrderDetails extends Model
         $harga = $this->db->table('healthy_food')->select('price')->where('food', $food_name)->get()->getRowArray();
         return $harga['price'] * $qty;
     }
+
+    public function getOrderDetails($id_order)
+    {
+        $order_details = $this->db->table('order_details')->select('food_name, qty, harga')->where('id_order', $id_order)->get()->getResultArray();
+        return $order_details;
+    }
 }
 // class OrderDetails extends Model
 // {

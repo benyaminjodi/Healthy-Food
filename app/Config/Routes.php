@@ -17,5 +17,7 @@ $routes->get('/order', 'OrderController::index');
 $routes->post('/order', 'OrderController::create');
 $routes->post('/order_details', 'OrderDetailsController::create');
 $routes->post('/sign_up', 'UserController::sign_up');
+$routes->get('/profil', 'UserController::index');
+$routes->get('/order_view', 'OrderController::viewOrder');
 
 $routes->setAutoRoute(true);

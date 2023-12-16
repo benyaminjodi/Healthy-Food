@@ -29,6 +29,13 @@ class Order extends Model
         return $id_order['id_order'];
     }
 
+    public function getOrder()
+    {
+        $email = $_COOKIE['TestCookie'];
+        $order = $this->db->table('orders')->select('id_order, total_harga, point, created_at')->where('email_user', $email)->get()->getResultArray();
+        return $order;
+    }
+
     public function updateDataOrder($id_order, $total_harga, $point)
     {
         $data = [

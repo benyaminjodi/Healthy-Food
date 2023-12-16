@@ -36,6 +36,113 @@
   ======================================================== -->
 </head>
 
+<style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    #header {
+        background-color: #fff;
+        padding: 10px 0;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid #ddd;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    #navbar ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    #navbar li {
+        margin-right: 20px;
+    }
+
+    #navbar a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    #navbar a.active,
+    #navbar a:hover {
+        color: #3498db;
+    }
+
+    #navbar a.home-link {
+        color: #2ecc71;
+        /* Warna hijau */
+    }
+
+
+    .user-profile {
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+        margin-top: 80px;
+        /* Adjusted to make space for the fixed header */
+    }
+
+    .user-profile img {
+        width: 100%;
+        height: auto;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .user-details {
+        padding: 20px;
+    }
+
+    .user-details h2 {
+        margin-bottom: 10px;
+    }
+
+    .user-details p {
+        color: #555;
+        margin-bottom: 15px;
+    }
+
+    .social-media {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+
+    .social-media a {
+        margin: 0 10px;
+        color: #3498db;
+        text-decoration: none;
+        font-size: 20px;
+    }
+
+    .user-points {
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+</style>
+
 <body>
 
     <!-- ======= Header ======= -->
@@ -49,7 +156,7 @@
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="active" href="<?= base_url('/') ?>">Home</a></li>
+                    <li><a href="<?= base_url('/') ?>">Home</a></li>
                     <li><a href="<?= base_url('/food') ?>">Food</a></li>
                     <li><a href="<?= base_url('/order') ?>">Order</a></li>
                 </ul>
@@ -60,6 +167,7 @@
 
         </div>
     </header><!-- End Header -->
+
 
 
 
@@ -87,73 +195,27 @@
         </div>
     </header><!-- End Header -->
 
-    <?php if ($page) {
-        echo view($page);
-    } ?>
-
-    <!-- ======= Footer ======= -->
-    <footer id="footer">
-
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-
-
-                    <div class="col-lg-2 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Food</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Order</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Profil</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 footer-newsletter">
-                        <h4>Join Our Newsletter</h4>
-                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                        <form action="" method="post">
-                            <input type="email" name="email"><input type="submit" value="Subscribe">
-                        </form>
-                    </div>
-
-                </div>
+    <div class="user-profile">
+        <img src="path/to/user-image.jpg" alt="User Photo">
+        <div class="user-details">
+            <h2>Nama Pengguna</h2>
+            <p>Email: user@example.com</p>
+            <div class="social-media">
+                <a href="#" class="fa fa-twitter"></a>
+                <a href="#" class="fa fa-google-plus"></a>
+                <a href="#" class="fa fa-facebook"></a>
+                <a href="#" class="fa fa-dribbble"></a>
             </div>
+            <p>Deskripsi pengguna yang singkat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
-
-        <div class="container d-md-flex py-4">
-
-            <div class="me-md-auto text-center text-md-start">
-                <div class="copyright">
-                    &copy; Copyright <strong><span>Mentor</span></strong>. All Rights Reserved
-                </div>
-                <div class="credits">
-                    <!-- All the links in the footer should remain intact. -->
-                    <!-- You can delete the links only if you purchased the pro version. -->
-                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/ -->
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                </div>
-            </div>
-            <div class="social-links text-center text-md-right pt-3 pt-md-0">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-            </div>
+        <div class="user-points">
+            <p>Poin: 1000</p>
         </div>
-    </footer><!-- End Footer -->
+    </div>
+
+
+
+
 
     <div id="preloader"></div>
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
