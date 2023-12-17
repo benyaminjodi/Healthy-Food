@@ -42,7 +42,7 @@ class FoodController extends BaseController
 
     public function convertToInt($calories)
     {
-        $calories = substr($calories, 0, strlen($calories) - 6);
+        $calories = substr($calories, 0, strlen($calories) - 4);
         $calories = (int)$calories;
         return $calories;
     }
