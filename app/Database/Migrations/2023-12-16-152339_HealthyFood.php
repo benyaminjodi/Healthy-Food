@@ -20,8 +20,8 @@ class HealthyFood extends Migration
                 "notNull" => true,
             ],
             "calories" => [
-                "type" => "INT",
-                "constraint" => 11,
+                "type" => "VARCHAR",
+                "constraint" => 225,
                 "notNull" => true,
             ],
             "price" => [

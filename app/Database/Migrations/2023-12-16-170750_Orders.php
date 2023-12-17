@@ -22,6 +22,7 @@ class Orders extends Migration
             "total_harga" => [
                 "type" => "INT",
                 "constraint" => 11,
+                
             ],
             "point" => [
                 "type" => "INT",

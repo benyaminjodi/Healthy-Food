@@ -135,6 +135,39 @@
             /* Merah tua */
             margin-top: 10px;
         }
+
+        .activity-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .activity-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 15px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .activity-item:hover {
+            transform: scale(1.05);
+        }
+
+        .activity-info h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .activity-info p {
+            margin: 5px 0;
+            color: #555;
+        }
     </style>
 </head>
 
@@ -167,6 +200,41 @@
         <input type="text" id="foodInput" />
         <button type="button" onclick="submitForm()">Submit</button>
     </form>
+
+    <div class="activity-container" id="activityList">
+        <script>
+            const activitiesData = <?php echo json_encode($activities); ?>;
+
+            function createActivityItem(activity) {
+                const activityItem = document.createElement('div');
+                activityItem.className = 'activity-item';
+
+                const activityInfo = document.createElement('div');
+                activityInfo.className = 'activity-info';
+                activityInfo.innerHTML = `
+                    <h3>${activity.activityType}</h3>
+                    <p>Quantity: ${activity.quantity} ${activity.unit}</p>
+                `;
+
+                activityItem.appendChild(activityInfo);
+
+                return activityItem;
+            }
+
+            const activitiesContainer = document.getElementById('activityList');
+
+            if (Array.isArray(activitiesData) && activitiesData.length > 0) {
+                activitiesData.forEach(activity => {
+                    const activityItem = createActivityItem(activity);
+                    activitiesContainer.appendChild(activityItem);
+                });
+            } else {
+                const noActivitiesMessage = document.createElement('p');
+                noActivitiesMessage.textContent = 'No activities found!';
+                activitiesContainer.appendChild(noActivitiesMessage);
+            }
+        </script>
+    </div>
 
     <div class="food-container" id="foodList">
         <script>
@@ -218,7 +286,10 @@
                 foodContainer.appendChild(foodItem);
             });
         </script>
+
     </div>
+
+
 
 
 
