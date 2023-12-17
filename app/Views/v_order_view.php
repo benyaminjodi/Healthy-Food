@@ -99,7 +99,7 @@
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
-            <a href="courses.html" class="get-started-btn">Get Started</a>
+            <<a href="<?= base_url('/profil') ?>" class="get-started-btn">Profil</a>
         </div>
     </header>
 

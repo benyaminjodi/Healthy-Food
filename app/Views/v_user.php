@@ -57,7 +57,7 @@
             <ul>
                 <li><a href="<?= base_url('/') ?>">Home</a></li>
                 <li><a href="<?= base_url('/food') ?>">Food</a></li>
-                <li><a class="active" href="<?= base_url('/order') ?>">Order</a></li>
+                <li><a href="<?= base_url('/order') ?>">Order</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
