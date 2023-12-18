@@ -2,26 +2,42 @@
 
 Website Healthy Food, dirancang untuk memberikan informasi seputar makanan sehat dan menyediakan fitur order yang dapat digunakan oleh user. Hal ini diharapkan bisa meningkatan kesadaran akan pentingnya pola makan sehat dalam menjaga kesehatan tubuh. Dengan gaya hidup yang serba cepat, banyak orang cenderung mengabaikan aspek nutrisi. Melalui website ini, kita dapat memberikan kesadaran untuk membantu mereka membuat pilihan makanan yang lebih baik.
 
-## How To Run
+## How to Run?
 
-- Clone repository github ini ke local
-- Buka XAMPP, Start Apache dan MySQL
-- Buka Localhost/phpmyadmin
-- Buat sebuah database bernama 'healthy_food'
-- Buat 4 buah table, yaitu:
+1. Clone repository github ini
+2. Download file .env di [sini](https://drive.google.com/file/d/1-8yzmIJDj8aar8uoVD1OpH8-sTj5xRb8/view?usp=drive_link)
+3. Buatlah database di phpmyadmin dengan command
 
-  a. healthy_food = ['food', 'serving','calories', price]
-  b. orders = ['id_order','email_user','total_harga','point', 'created_at']
-  c.order_details = ['id','id_order','food_name','qty','harga']
-  d. users =['name', 'email', 'password', 'point']
+```
+CREATE DATABASE `healthy_food`;
+```
 
-- Jalankan composer install di terminal
-- Jalankan php spark serve
+4. run "composer install"
 
-## Endpoint
+```
+composer install
+npm i
+php spark migrate:refresh
+php spark db:seed UserSeeder
+```
 
-Berikut adalah API Endpoint pada Healthy Food :
-Method GET :
+4. Buka 2 terminal yang berbeda, run ini di terminal 1
 
-- /foodAPI : Menampilkan data makanan
-- /foodAPI/(:any) : Menampilkan data makanan berdasarkan kalori dengan input type string
+```
+npm mix watch
+```
+
+and run ini di terminal 2
+
+```
+php spark serve --port 8081
+```
+
+5. Jangan lupa untuk start Apache dan Mysqli server di XAMP
+
+## Api Endpoints for
+
+| No  | HTTP Method | URL                            | Description                                                                     |
+| --- | ----------- | ------------------------------ | ------------------------------------------------------------------------------- |
+| 1   | GET         | /foodAPI| Menampilkan data seluruh makanan include dengan serving, harga, dan calories |
+| 2   | GET         | /foodAPI/(:any)| Menampilkan data seluruh makanan include dengan serving, harga, dan calori dengan input calori tertentu |

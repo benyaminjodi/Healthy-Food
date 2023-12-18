@@ -10,9 +10,9 @@ class FoodAPI extends ResourceController
 {
     public function index()
     {
-        if (session()->get('num_user') == '') {
-            return redirect()->to('/login');
-        }
+        // if (session()->get('num_user') == '') {
+        //     return redirect()->to('/login');
+        // }
 
         $model1 = model(Food::class);
         $data = [
